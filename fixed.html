@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blooming Lotus</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 55%,
+            #54245f 0%,
+            #29132f 45%,
+            #100915 100%
+        );
+}
+
+
+/* ================= STARS ================= */
+
+.stars {
+    position: absolute;
+    inset: 0;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+
+    background: white;
+    border-radius: 50%;
+
+    animation: twinkle 2s infinite alternate;
+}
+
+.star:nth-child(1) { left: 8%; top: 18%; }
+.star:nth-child(2) { left: 17%; top: 42%; }
+.star:nth-child(3) { left: 27%; top: 15%; }
+.star:nth-child(4) { left: 38%; top: 30%; }
+.star:nth-child(5) { left: 50%; top: 12%; }
+.star:nth-child(6) { left: 61%; top: 28%; }
+.star:nth-child(7) { left: 73%; top: 17%; }
+.star:nth-child(8) { left: 86%; top: 40%; }
+.star:nth-child(9) { left: 12%; top: 72%; }
+.star:nth-child(10) { left: 30%; top: 78%; }
+.star:nth-child(11) { left: 70%; top: 75%; }
+.star:nth-child(12) { left: 88%; top: 65%; }
+
+@keyframes twinkle {
+
+    from {
+        opacity: .2;
+        transform: scale(.6);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+
+/* ================= FLOWER ================= */
+
+.flower {
+    position: relative;
+    width: 600px;
+    height: 600px;
+}
+
+
+/* ================= GLOW ================= */
+
+.glow {
+    position: absolute;
+
+    width: 330px;
+    height: 330px;
+
+    left: 50%;
+    top: 55%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: #e46cff;
+
+    filter: blur(90px);
+
+    opacity: .35;
+
+    animation: glow 5s ease-in-out infinite;
+}
+
+@keyframes glow {
+
+    0%, 100% {
+        transform:
+            translate(-50%, -50%)
+            scale(.8);
+
+        opacity: .25;
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+
+        opacity: .5;
+    }
+}
+
+
+/* ================= PETALS ================= */
+
+.petal {
+
+    position: absolute;
+
+    width: 125px;
+    height: 250px;
+
+    left: 50%;
+    bottom: 155px;
+
+    transform-origin: 50% 100%;
+
+    border-radius:
+        70% 70% 25% 25%;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(131,55,190,.65),
+            rgba(255,190,244,.78),
+            rgba(178,75,220,.65)
+        );
+
+    border: 1px solid rgba(255,230,255,.7);
+
+    box-shadow:
+        inset 0 0 30px rgba(255,255,255,.3),
+        0 0 25px rgba(239,120,255,.6);
+
+    opacity: 0;
+
+    animation:
+        bloom 7s ease-in-out infinite;
+
+    animation-delay: var(--delay);
+}
+
+
+/* ================= PETAL POSITIONS ================= */
+
+.petal:nth-child(3) {
+    --angle: 0deg;
+    --delay: 0s;
+}
+
+.petal:nth-child(4) {
+    --angle: -20deg;
+    --delay: .15s;
+}
+
+.petal:nth-child(5) {
+    --angle: 20deg;
+    --delay: .3s;
+}
+
+.petal:nth-child(6) {
+    --angle: -40deg;
+    --delay: .45s;
+}
+
+.petal:nth-child(7) {
+    --angle: 40deg;
+    --delay: .6s;
+}
+
+.petal:nth-child(8) {
+    --angle: -60deg;
+    --delay: .75s;
+}
+
+.petal:nth-child(9) {
+    --angle: 60deg;
+    --delay: .9s;
+}
+
+.petal:nth-child(10) {
+    --angle: -80deg;
+    --delay: 1.05s;
+}
+
+.petal:nth-child(11) {
+    --angle: 80deg;
+    --delay: 1.2s;
+}
+
+.petal:nth-child(12) {
+    --angle: -105deg;
+    --delay: 1.35s;
+}
+
+.petal:nth-child(13) {
+    --angle: 105deg;
+    --delay: 1.5s;
+}
+
+
+/* ================= BLOOM ================= */
+
+@keyframes bloom {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            translateY(70px)
+            rotate(0deg)
+            scale(.15);
+    }
+
+    20% {
+        opacity: .7;
+
+        transform:
+            translateX(-50%)
+            translateY(20px)
+            rotate(0deg)
+            scale(.45);
+    }
+
+    55% {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(0)
+            rotate(var(--angle))
+            scale(1);
+    }
+
+    75%, 100% {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(0)
+            rotate(var(--angle))
+            scale(1);
+    }
+}
+
+
+/* ================= CENTER ================= */
+
+.center {
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    left: 50%;
+    bottom: 145px;
+
+    transform:
+        translateX(-50%)
+        scale(.2);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #fffbd7 0%,
+            #ffe57d 25%,
+            #ff9bd9 55%,
+            rgba(255,110,220,.2) 75%,
+            transparent 100%
+        );
+
+    box-shadow:
+        0 0 25px #fff0a5,
+        0 0 55px #ff9de5,
+        0 0 100px #e76aff;
+
+    animation: centerBloom 7s ease-in-out infinite;
+}
+
+@keyframes centerBloom {
+
+    0% {
+        transform:
+            translateX(-50%)
+            scale(.15);
+
+        opacity: .3;
+    }
+
+    45% {
+        transform:
+            translateX(-50%)
+            scale(.5);
+
+        opacity: .7;
+    }
+
+    65%, 100% {
+        transform:
+            translateX(-50%)
+            scale(1);
+
+        opacity: 1;
+    }
+}
+
+
+/* ================= STEM ================= */
+
+.stem {
+
+    position: absolute;
+
+    width: 14px;
+    height: 150px;
+
+    left: 50%;
+    bottom: 20px;
+
+    transform: translateX(-50%);
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #70411f,
+            #ffc76c,
+            #75411f
+        );
+
+    box-shadow:
+        0 0 12px rgba(255,190,90,.7);
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- STARS -->
+
+<div class="stars">
+
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+
+</div>
+
+
+<!-- FLOWER -->
+
+<div class="flower">
+
+    <div class="glow"></div>
+
+    <div class="stem"></div>
+
+
+    <!-- 11 OUTER PETALS ONLY -->
+
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+
+
+    <!-- CENTER -->
+
+    <div class="center"></div>
+
+</div>
+
+</body>
+</html>
